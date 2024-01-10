@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+    <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha384-+2lJjDH5Iq5kzJPrp0EcXZuhByJwz8ejyU5RP4lsTf2+rSHY5Vq2PQ/sFZbwKdkHJ" crossorigin="anonymous">
+    </head>
+<!-- Content Container -->
+    <div class="content-container">
+        <!-- Video Background -->
+       @*  <div class="video-background">
+            <video autoplay muted loop>
+            <source src="vecteezy_abstract-dark-sci-fi-tunnel-with-green-light-seamless-loop_9435573.mov" type="video/mov">
+                Your browser does not support the video tag.
+            
+            </video>
+        </div> *@
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Your main content goes here -->
+        @*<h1>
+            Welcome <br /> @if (!SignInManager.IsSignedIn(User))
+            {
+                <span>Register now to get started:  <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register"><div style="color:darkblue"> Click to Register</div></a></span>
+            }
+                @User.Identity?.Name
+            </h1>*@
+            <div class="w3ls_banner_info">
+                <h3>
+                    Welcome <br /> @if (!SignInManager.IsSignedIn(User))
+                    {
+                        <span>Register now to get started:  <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register"><div style="color:darkblue"> Click to Register</div></a></span>
+                    }
+                    @User.Identity?.Name
+                </h3>
+					   
+		    </div>
+
+        </div>
+    </div>

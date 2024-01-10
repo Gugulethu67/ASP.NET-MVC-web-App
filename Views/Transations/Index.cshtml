@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Expense_Tracker.Models.Transation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+@*Recent Transactions*@
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget">
+            <div class="p-4">
+                <h5 class="fw-bold">Recent Transactions</h5>
+            </div>
+            <div class="px-4 pb-4">
+                <ejs-grid id="recent-transactions"
+                          dataSource="@Model" gridLines="None">
+                    <e-grid-columns>
+                        <e-grid-column headerText="Division" field="Division.Name"></e-grid-column>
+                        <e-grid-column headerText="Amount" field="FormattedAmount" textAlign="Right"></e-grid-column>
+                        <e-grid-column headerText="Note" field="Note" textAlign="Right"></e-grid-column>
+                        <e-grid-column headerText="Date" field="Date" type="date" format="MMM-dd-yy"></e-grid-column>
+                        <e-grid-column headerText="Actions" template="#action" width="100px"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <a class="btn-light btn-sm blue-button" asp-action="Create">+ New Transation</a>
+    </div>
+</div>
+
+<script id="action" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Transations/Edit/${TransationId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Transations/Delete/${TransationId}" method="post">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Are sure to delete this record?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
+    </div>
+</script>
+@* 
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Division)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Division.DivisionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TransationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TransationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TransationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+  *@
